@@ -1,0 +1,10 @@
+---
+
+# 1.1.1 L1 Ensure Enforce password history is set to 24 or more passwords (Scored)
+- name: "SCORED | 1.1.1 | AUDIT | L1 Ensure Enforce password history is set to 24 or more passwords"
+  assert:
+    that: passwordhistorysize | int is version('24', '>=')
+    fail_msg: "Password history must be configured to 24 passwords remembered and variable passwordhistorysize is set to {{ passwordhistorysize }}"
+  changed_when: false
+  ignore_errors: true
+  register: result

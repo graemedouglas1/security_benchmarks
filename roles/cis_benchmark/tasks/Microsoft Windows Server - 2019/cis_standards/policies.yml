@@ -1,0 +1,13 @@
+---
+
+- name: "SCORED | 1.1.1 | POLICY | L1 Ensure Enforce password history is set to 24 or more passwords"
+  win_security_policy:
+    section: System Access
+    key: PasswordHistorySize
+    value: "{{ passwordhistorysize }}"
+  when:
+      - "{{ ansible_distribution_major_version.cis_1_1_1 }}"
+  tags:
+      - cis_l1-domaincontroller
+      - cis_l1-memberserver
+      - cis_1.1.1
