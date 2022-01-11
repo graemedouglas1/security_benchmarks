@@ -28,7 +28,7 @@
 
     - name: Return os_version Fact
       debug:
-        msg: os_version | string
+        msg: "{{ os_version }}"
 
     - name: Check ansible version
       assert:
