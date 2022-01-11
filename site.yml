@@ -26,7 +26,8 @@
         cacheable: yes
       tags: [ 'always' ]
 
-     - debug:
+    - name: Return os_version Fact
+       debug:
           msg: os_version | string
 
     - name: Check ansible version
