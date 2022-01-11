@@ -1,5 +1,5 @@
 ---
 
 - name: Include distribution specific standards
-  ansible.builtin.include_tasks:
+  include_tasks:
     file: "{{ ansible_distribution }}/main.yml"
