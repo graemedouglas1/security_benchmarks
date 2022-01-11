@@ -5,7 +5,7 @@
     name: SeBatchLogonRight
     users: Administrators
     action: set
-  when: cis[2019]['2_2_36
+  when: cis[2019]['2.2.36']
     - ansible_windows_domain_role == "Primary domain controller"
   tags:
     - level2-domaincontroller
@@ -17,7 +17,7 @@
     name: cachedlogonscount
     data: 1
     type: string
-  when: cis[2019]['2_3_7_6']
+  when: cis[2019]['2.3.7.6']
   tags:
     - level2-memberserver
     - control_2.3.7.6
@@ -28,7 +28,7 @@
     name: DisableDomainCreds
     data: 1
     type: dword
-  when: cis[2019]['2_3_10_4']
+  when: cis[2019]['2.3.10.4']
   tags:
     - level2-domaincontroller
     - level2-memberserver
