@@ -6,7 +6,7 @@
     key: PasswordHistorySize
     value: "{{ passwordhistorysize }}"
   when:
-      - ansible_distribution_major_version.cis_1_1_1
+      - '{{ ansible_distribution_major_version.cis_1_1_1 }}'
   tags:
       - cis_l1-domaincontroller
       - cis_l1-memberserver
