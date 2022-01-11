@@ -82,7 +82,7 @@
     - control_1.2.1
 
 # This rule must be applied first to make control_1.2.1 and control_1.2.3 applicable
-- name: "SCORED | 1.2.2 | PATCH | L1 Ensure Account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"
+- name: "SCORED | 1.2.2 | POLICY | L1 Ensure Account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"
   win_security_policy:
     section: System Access
     key: LockoutBadCount
@@ -93,7 +93,7 @@
     - memberserver
     - control_1.2.2
 
-- name: "SCORED | 1.2.3 | PATCH | L1 Ensure Reset account lockout counter after is set to 15 or more minutes"
+- name: "SCORED | 1.2.3 | POLICY | L1 Ensure Reset account lockout counter after is set to 15 or more minutes"
   win_security_policy:
     section: System Access
     key: ResetLockoutCount
