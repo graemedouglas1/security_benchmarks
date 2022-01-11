@@ -5,7 +5,7 @@
     section: System Access
     key: PasswordHistorySize
     value: "{{ passwordhistorysize }}"
-  when: cis[2019].'1_1_1'
+  when: cis[2019][1_1_1]
   tags:
       - cis_l1-domaincontroller
       - cis_l1-memberserver
