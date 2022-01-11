@@ -27,8 +27,8 @@
       tags: [ 'always' ]
 
     - name: Return os_version Fact
-       debug:
-          msg: os_version | string
+      debug:
+        msg: os_version | string
 
     - name: Check ansible version
       assert:
