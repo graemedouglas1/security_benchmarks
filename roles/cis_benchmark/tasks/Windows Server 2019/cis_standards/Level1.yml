@@ -148,7 +148,7 @@
     users: Administrators
     action: set
   when:
-    - cis[2019]['2_2_5']
+    - cis[2019]['2.2.5']
     - ansible_windows_domain_role == "Primary domain controller"
   tags:
     - domaincontroller
