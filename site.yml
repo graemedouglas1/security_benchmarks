@@ -20,6 +20,11 @@
         fail_msg: "This role can only be run against Windows Server (2016|2019) Editions. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
       tags: [ 'always' ]
 
+    - name: Save Windows version as fact
+      set_fact:
+        os_version: "{{ 'ansible_distribution' | regex_search('Windows Server (2016|2019)') }}"
+      tags: [ 'always' ]
+
     - name: Check ansible version
       assert:
         that: ansible_version.full is version_compare(min_ansible_version, '>=')

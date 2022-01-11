@@ -2,4 +2,4 @@
 
 - name: Include distribution specific standards
   include_tasks:
-    file: "{{ ansible_distribution }}/main.yml"
+    file: "{{ os_version }}/main.yml"
