@@ -26,6 +26,9 @@
         cacheable: yes
       tags: [ 'always' ]
 
+     - debug:
+          msg: os_version | string
+
     - name: Check ansible version
       assert:
         that: ansible_version.full is version_compare(min_ansible_version, '>=')
