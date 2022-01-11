@@ -1,12 +1,4 @@
 ---
-section01_patch: yes
-section02_patch: yes
-section09_patch: yes
-section17_patch: yes
-section18_patch: yes
-section19_patch: yes
-
-min_ansible_version: "2.6"
 
 # We've defined complexity-high to mean that we cannot automatically remediate
 # the rule in question.  In the future this might mean that the remediation
@@ -845,7 +837,7 @@ lockoutbadcount: 3
 resetlockoutcount: 15
 passwordhistorysize: 24
 maximumpasswordage: 60
-minimumpasswordage: 1
+minimumpasswordage: 0
 minimumpasswordlength: 14
 
 newadministratorname: renamedadmin
