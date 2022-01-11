@@ -305,10 +305,10 @@
       - Administrators
       - NT VIRTUAL MACHINE\Virtual Machines
     action: set
-  when: is_hyperv_installed
-  when: 
-      - cis[2019]['2.2.18']
-      - not ansible_windows_domain_role == "Primary domain controller"
+  when:
+    - is_hyperv_installed
+    - cis[2019]['2.2.18']
+    - not ansible_windows_domain_role == "Primary domain controller"
   tags:
     - memberserver
     - control_2.2.18
