@@ -23,6 +23,7 @@
     - name: Save Windows version as fact
       set_fact:
         os_version: "{{ 'ansible_distribution' | regex_search('Windows Server (2016|2019)') }}"
+        cacheable: yes
       tags: [ 'always' ]
 
     - name: Check ansible version
