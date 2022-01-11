@@ -837,7 +837,7 @@ lockoutbadcount: 3
 resetlockoutcount: 15
 passwordhistorysize: 24
 maximumpasswordage: 60
-minimumpasswordage: 0
+minimumpasswordage: 1
 minimumpasswordlength: 14
 
 newadministratorname: renamedadmin
