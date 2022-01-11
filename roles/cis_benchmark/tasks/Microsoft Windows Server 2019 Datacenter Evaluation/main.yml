@@ -5,7 +5,6 @@
   include_tasks: 
     file: cis_standards/tests.yml
   run_once: yes
-  delegate_to: localhost
 
 # Apply CIS Policies
 - name: Apply CIS Policies
