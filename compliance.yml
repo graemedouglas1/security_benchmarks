@@ -25,11 +25,6 @@
         that: ansible_version.full is version_compare(min_ansible_version, '>=')
         msg: You must use Ansible {{ min_ansible_version }} or greater
       tags: [ 'always' ]
-
-    - name: Include required facts
-      include_tasks:
-        file: facts.yml
-      tags: [ 'always' ]
   
   roles:
     - cis_benchmark
