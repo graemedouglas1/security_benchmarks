@@ -185,10 +185,10 @@
 - name: "SCORED | 2.2.8 & 2.2.9 | POLICY | L1 Ensure Allow log on through Remote Desktop Services is set to Administrators DC only"
   win_user_right:
     name: SeRemoteInteractiveLogonRight
-      users:
-          - Administrators
-          - Remote Desktop Users
-      action: set
+    users:
+      - Administrators
+      - Remote Desktop Users
+    action: set
   when:
     - ansible_windows_domain_role == "Primary domain controller"
     - cis[2019]['2.2.8'] or cis[2019]['2.2.9']
@@ -227,8 +227,8 @@
   win_user_right:
     name: SeTimeZonePrivilege
       users:
-          - Administrators
-          - Local Service
+        - Administrators
+        - Local Service
       action: set
   when: cis[2019]['2.2.12']
   tags:
@@ -316,9 +316,9 @@
 - name: "SCORED | 2.2.19 | POLICY | L1 Ensure Debug programs is set to Administrators"
   win_user_right:
     name: SeDebugPrivilege
-      users:
-        - Administrators
-      action: set
+    users:
+      - Administrators
+    action: set
   when: cis[2019]['2.2.19']
   tags:
     - domaincontroller
