@@ -226,10 +226,10 @@
 - name: "SCORED | 2.2.12 | POLICY | L1 Ensure Change the time zone is set to Administrators LOCAL SERVICE"
   win_user_right:
     name: SeTimeZonePrivilege
-      users:
-        - Administrators
-        - Local Service
-      action: set
+    users:
+      - Administrators
+      - Local Service
+    action: set
   when: cis[2019]['2.2.12']
   tags:
     - domaincontroller
