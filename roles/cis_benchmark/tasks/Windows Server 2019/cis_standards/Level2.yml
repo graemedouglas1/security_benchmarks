@@ -809,3 +809,87 @@
     - domaincontroller
     - memberserver
     - control_18.9.98.1
+
+- name: "SCORED | 19.6.6.1.1 | PATCH | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
+  block:
+    - name: "SCORED | 19.6.6.1.1 | PATCH | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
+      win_regedit:
+        path: HKU:\.DEFAULT\Software\Policies\Microsoft\Assistance\Client\1.0
+        name: NoImplicitFeedback
+        data: 1
+        type: dword
+
+    - name: "SCORED | 19.6.6.1.1 | PATCH | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
+      win_regedit:
+        path: HKCU:\Software\Policies\Microsoft\Assistance\Client\1.0
+        name: NoImplicitFeedback
+        data: 1
+        type: dword
+  when: cis[2019][2019]['19.6.6.1.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_19.6.6.1.1
+
+- name: "SCORED | 19.7.7.3 | PATCH | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
+  block:
+    - name: "SCORED | 19.7.7.3 | PATCH | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
+      win_regedit:
+        path: HKU:\.DEFAULT\Software\Policies\Microsoft\Windows\CloudContent
+        name: DisableTailoredExperiencesWithDiagnosticData
+        data: 1
+        type: dword
+
+    - name: "SCORED | 19.7.7.3 | PATCH | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
+      win_regedit:
+        path: HKCU:\Software\Policies\Microsoft\Windows\CloudContent
+        name: DisableTailoredExperiencesWithDiagnosticData
+        data: 1
+        type: dword
+  when: cis[2019][2019]['19.7.7.3']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_19.7.7.3
+
+- name: "SCORED | 19.7.7.4 | PATCH | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
+  block:
+    - name: "SCORED | 19.7.7.4 | PATCH | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
+      win_regedit:
+        path: HKU:\.DEFAULT\Software\Policies\Microsoft\Windows\CloudContent
+        name: DisableWindowsSpotlightFeatures
+        data: 1
+        type: dword
+
+    - name: "SCORED | 19.7.7.4 | PATCH | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
+      win_regedit:
+        path: HKCU:\Software\Policies\Microsoft\Windows\CloudContent
+        name: DisableWindowsSpotlightFeatures
+        data: 1
+        type: dword
+  when: cis[2019][2019]['19.7.7.4']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_19.7.7.4
+
+- name: "SCORED | 19.7.45.2.1 | PATCH | L2 Ensure Prevent Codec Download is set to Enabled"
+  block:
+    - name: "SCORED | 19.7.45.2.1 | PATCH | L2 Ensure Prevent Codec Download is set to Enabled"
+      win_regedit:
+        path: HKU:\.DEFAULT\Software\Policies\Microsoft\Windowsmediaplayer
+        name: PreventCodecDownload
+        data: 1
+        type: dword
+
+    - name: "SCORED | 19.7.45.2.1 | PATCH | L2 Ensure Prevent Codec Download is set to Enabled"
+      win_regedit:
+        path: HKCU:\Software\Policies\Microsoft\Windowsmediaplayer
+        name: PreventCodecDownload
+        data: 1
+        type: dword
+  when: cis[2019][2019]['19.7.45.2.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_19.7.45.2.1
