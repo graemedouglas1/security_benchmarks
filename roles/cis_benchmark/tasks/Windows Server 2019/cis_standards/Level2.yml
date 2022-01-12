@@ -8,7 +8,7 @@
   when: cis[2019]['2.2.36']
     - ansible_windows_domain_role == "Primary domain controller"
   tags:
-    - level2-domaincontroller
+    - domaincontroller
     - control_2.2.36
 
 - name: "SCORED | 2.3.7.6 | POLICY | L2 Ensure Interactive logon Number of previous logons to cache in case domain controller is not available is set to 4 or fewer logons MS only"
@@ -19,10 +19,10 @@
     type: string
   when: cis[2019]['2.3.7.6']
   tags:
-    - level2-memberserver
+    - memberserver
     - control_2.3.7.6
 
-    - name: "SCORED | 2.3.10.4 | POLICY | L2 Ensure Network access Do not allow storage of passwords and credentials for network authentication is set to Enabled"
+- name: "SCORED | 2.3.10.4 | POLICY | L2 Ensure Network access Do not allow storage of passwords and credentials for network authentication is set to Enabled"
   win_regedit:
     path: HKLM:\System\Currentcontrolset\Control\Lsa
     name: DisableDomainCreds
@@ -30,8 +30,782 @@
     type: dword
   when: cis[2019]['2.3.10.4']
   tags:
-    - level2-domaincontroller
-    - level2-memberserver
+    - domaincontroller
+    - memberserver
     - control_2.3.10.4
 
+- name: "SCORED | 18.1.3 | POLICY | L2 Ensure Allow Online Tips is set to Disabled"
+  win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+    name: AllowOnlineTips
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.1.3']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.1.3
 
+- name: "SCORED | 18.4.5 | POLICY | L2 Ensure MSS KeepAliveTime How often keep-alive packets are sent in milliseconds is set to Enabled 300000 or 5 minutes recommended"
+  win_regedit:
+    path: HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+    state: present
+    value: KeepAliveTime
+    data: 300000
+    datatype: dword
+  when: cis[2019][2019]['18.4.5']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.4.5
+
+- name: "SCORED | 18.4.7 | POLICY | L2 Ensure MSS PerformRouterDiscovery Allow IRDP to detect and configure Default Gateway addresses could lead to DoS is set to Disabled"
+  win_regedit:
+    path: HKLM:\System\Currentcontrolset\Services\Tcpip\Parameters
+    state: present
+    name: PerformRouterDiscovery
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.4.7']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.4.7
+
+- name: "SCORED | 18.4.10 | POLICY | L2 Ensure MSS TcpMaxDataRetransmissions IPv6 How many times unacknowledged data is retransmitted is set to Enabled 3"
+  win_regedit:
+    path: HKLM:\System\Currentcontrolset\Services\Tcpip6\Parameters
+    name: TcpMaxDataRetransmissions
+    data: 3
+    type: dword
+  when: cis[2019][2019]['18.4.10']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.4.10
+
+- name: "SCORED | 18.4.11 | POLICY | L2 Ensure MSS TcpMaxDataRetransmissions How many times unacknowledged data is retransmitted is set to Enabled 3"
+  win_regedit:
+    path: HKLM:\System\Currentcontrolset\Services\Tcpip\Parameters
+    name: TcpMaxDataRetransmissions
+    data: 3
+    type: dword
+  when: cis[2019][2019]['18.4.11']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.4.11
+
+- name: "SCORED | 18.5.5.1 | POLICY | L2 Ensure Enable Font Providers is set to Disabled"
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+    name: EnableFontProviders
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.5.5.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.5.5.1
+
+- name: "SCORED | 18.5.9.1 | POLICY | L2 Ensure Turn on Mapper IO LLTDIO driver is set to Disabled"
+  block:
+    - name: "SCORED | 18.5.9.1 | POLICY | L2 Ensure Turn on Mapper IO LLTDIO driver is set to Disabled | AllowLLTDIOOndomain"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Lltd
+        name: AllowLLTDIOOndomain
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.9.1 | POLICY | L2 Ensure Turn on Mapper IO LLTDIO driver is set to Disabled | AllowLLTDIOOnPublicNet"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Lltd
+        name: AllowLLTDIOOnPublicNet
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.9.1 | POLICY | L2 Ensure Turn on Mapper IO LLTDIO driver is set to Disabled | EnableLLTDIO"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Lltd
+        name: EnableLLTDIO
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.9.1 | POLICY | L2 Ensure Turn on Mapper IO LLTDIO driver is set to Disabled | ProhibitLLTDIOOnPrivateNet"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Lltd
+        name: ProhibitLLTDIOOnPrivateNet
+        data: 0
+        type: dword
+  when: cis[2019][2019]['18.5.9.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.5.9.1
+
+- name: "SCORED | 18.5.9.2 | POLICY | L2 Ensure Turn on Responder RSPNDR driver is set to Disabled"
+  block:
+    - name: "SCORED | 18.5.9.2 | POLICY | L2 Ensure Turn on Responder RSPNDR driver is set to Disabled | AllowRspndrOnDomain"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Lltd
+        name: AllowRspndrOnDomain
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.9.2 | POLICY | L2 Ensure Turn on Responder RSPNDR driver is set to Disabled | AllowRspndrOnPublicNet"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Lltd
+        name: AllowRspndrOnPublicNet
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.9.2 | POLICY | L2 Ensure Turn on Responder RSPNDR driver is set to Disabled | EnableRspndr"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Lltd
+        name: EnableRspndr
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.9.2 | POLICY | L2 Ensure Turn on Responder RSPNDR driver is set to Disabled | ProhibitRspndrOnPrivateNet"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Lltd
+        name: ProhibitRspndrOnPrivateNet
+        data: 0
+        type: dword
+  when: cis[2019][2019]['18.5.9.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.5.9.2
+
+- name: "SCORED | 18.5.10.2 | POLICY | L2 Ensure Turn off Microsoft Peer-to-Peer Networking Services is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Peernet
+    name: Disabled
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.5.10.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.5.10.2
+
+- name: "SCORED | 18.5.19.2.1 | POLICY | L2 Disable IPv6 Ensure TCPIP6 Parameter DisabledComponents is set to 0xff 255"
+  win_regedit:
+    path: HKLM:\System\CurrentControlSet\Services\TCPIP6\Parameters
+    name: DisabledComponents
+    data: 255
+    type: dword
+  when: cis[2019][2019]['18.5.19.2.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.5.19.2.1
+
+- name: "SCORED | 18.5.20.1 | POLICY | L2 Ensure Configuration of wireless settings using Windows Connect Now is set to Disabled"
+  block:
+    - name: "SCORED | 18.5.20.1 | POLICY | L2 Ensure Configuration of wireless settings using Windows Connect Now is set to Disabled | EnableRegistrars"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Wcn\Registrars
+        name: EnableRegistrars
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.20.1 | POLICY | L2 Ensure Configuration of wireless settings using Windows Connect Now is set to Disabled | DisableUPnPRegistrar"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Wcn\Registrars
+        name: DisableUPnPRegistrar
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.20.1 | POLICY | L2 Ensure Configuration of wireless settings using Windows Connect Now is set to Disabled | DisableInBand802DOT11Registrar"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Wcn\Registrars
+        name: DisableInBand802DOT11Registrar
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.20.1 | POLICY | L2 Ensure Configuration of wireless settings using Windows Connect Now is set to Disabled | DisableFlashConfigRegistrar"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Wcn\Registrars
+        name: DisableFlashConfigRegistrar
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.5.20.1 | POLICY | L2 Ensure Configuration of wireless settings using Windows Connect Now is set to Disabled | DisableWPDRegistrar"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Wcn\Registrars
+        name: DisableWPDRegistrar
+        data: 0
+        type: dword
+  when: cis[2019][2019]['18.5.20.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.5.20.1
+
+- name: "SCORED | 18.5.20.2 | POLICY | L2 Ensure Prohibit access of the Windows Connect Now wizards is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Wcn\Ui
+    name: DisableWcnUi
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.5.20.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.5.20.2
+
+- name: "SCORED | 18.5.21.2 | POLICY | L2 Ensure Prohibit connection to non-domain networks when connected to domain authenticated network is set to Enabled MS only"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Wcmsvc\Grouppolicy
+    name: fBlockNonDomain
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.5.21.2']
+    - not ansible_windows_domain_role == "Primary domain controller"
+  tags:
+    - memberserver
+    - control_18.5.21.2
+
+- name: "SCORED | 18.7.1.1 | POLICY | L2 Ensure Turn off notifications network usage is set to Enabled"
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications
+    name: NoCloudApplicationNotification
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.7.1.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.7.1.1
+
+- name: "SCORED | 18.8.22.1.2 | POLICY | L2 Ensure Turn off handwriting personalization data sharing is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Tabletpc
+    name: PreventHandwritingDataSharing
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.2
+
+- name: "SCORED | 18.8.22.1.3 | POLICY | L2 Ensure Turn off handwriting recognition error reporting is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Handwritingerrorreports
+    name: PreventHandwritingErrorReports
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.3']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.3
+
+- name: "SCORED | 18.8.22.1.4 | POLICY | L2 Ensure Turn off Internet Connection Wizard if URL connection is referring to Microsoft.com is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Internet Connection Wizard
+    name: ExitOnMSICW
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.4']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.4
+
+- name: "SCORED | 18.8.22.1.6 | POLICY | L2 Ensure Turn off printing over HTTP is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Printers
+    name: DisableHTTPPrinting
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.6']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.6
+
+- name: "SCORED | 18.8.22.1.7 | POLICY | L2 Ensure Turn off Registration if URL connection is referring to Microsoft.com is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Registration Wizard Control
+    name: NoRegistration
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.7']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.7
+
+- name: "SCORED |18.8.22.1.8 | POLICY | L2 Ensure Turn off Search Companion content file updates is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Searchcompanion
+    name: DisableContentFileUpdates
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.8']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.8
+
+- name: "SCORED | 18.8.22.1.9 | POLICY | L2 Ensure Turn off the Order Prints picture task is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: NoOnlinePrintsWizard
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.9']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.9
+
+- name: "SCORED | 18.8.22.1.10 | POLICY | L2 Ensure Turn off the Publish to Web task for files and folders is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: NoPublishingWizard
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.10']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.10
+
+- name: "SCORED | 18.8.22.1.11 | POLICY | L2 Ensure Turn off the Windows Messenger Customer Experience Improvement Program is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Messenger\Client
+    name: CEIP
+    data: 2
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.11']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.11
+
+- name: "SCORED | 18.8.22.1.12 | POLICY | L2 Ensure Turn off Windows Customer Experience Improvement Program is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Sqmclient\Windows
+    name: CEIPEnable
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.8.22.1.12']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.12
+
+- name: "SCORED | 18.8.22.1.13 | POLICY | L2 Ensure Turn off Windows Error Reporting is set to Enabled"
+  block:
+    - name: "SCORED | 18.8.22.1.13 | POLICY | L2 Ensure Turn off Windows Error Reporting is set to Enabled | Windows Error Reporting"
+      win_regedit:
+        path: HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting
+        name: Disabled
+        data: 1
+        type: dword
+
+    - name: "SCORED | 18.8.22.1.13 | POLICY | L2 Ensure Turn off Windows Error Reporting is set to Enabled | ErrorReporting"
+      win_regedit:
+        path: HKLM:\SOFTWARE\Policies\Microsoft\PCHealth\ErrorReporting
+        name: DoReport
+        data: 0
+        type: dword
+  when: cis[2019][2019]['18.8.22.1.13']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.22.1.13
+
+- name: "SCORED | 18.8.25.1 | POLICY | L2 Ensure Support device authentication using certificate is set to Enabled Automatic"
+  block:
+    - name: "SCORED | 18.8.25.1 | POLICY | L2 Ensure Support device authentication using certificate is set to Enabled Automatic | DevicePKInitBehavior"
+      win_regedit:
+        path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System\kerberos\parameters
+        name: DevicePKInitBehavior
+        data: 0
+        type: dword
+
+    - name: "SCORED | 18.8.25.1 | POLICY | L2 Ensure Support device authentication using certificate is set to Enabled Automatic | DevicePKInitEnabled"
+      win_regedit:
+        path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System\kerberos\parameters
+        name: DevicePKInitEnabled
+        data: 1
+        type: dword
+  when: cis[2019][2019]['18.8.25.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.25.1
+
+- name: "SCORED | 18.8.27.1 | POLICY | L2 Ensure Disallow copying of user input methods to the system account for sign-in is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Control Panel\International
+    name: BlockUserInputMethodsForSignIn
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.27.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.27.1
+
+- name: "SCORED | 18.8.31.1 | POLICY | L2 Ensure Allow Clipboard synchronization across devices is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\System
+    name: AllowCrossDeviceClipboard
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.8.31.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.31.1
+
+- name: "SCORED | 18.8.31.2 | POLICY | L2 Ensure Allow upload of User Activities is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\System
+    name: UploadUserActivities
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.8.31.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.31.2
+
+- name: "SCORED | 18.8.34.6.1 | POLICY | L2 Ensure Allow network connectivity during connected-standby on battery is set to Disabled"
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9
+    name: DCSettingIndex
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.8.34.6.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.34.6.1
+
+- name: "SCORED | 18.8.34.6.2 | POLICY | L2 Ensure Allow network connectivity during connected-standby plugged in is set to Disabled"
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9
+    name: ACSettingIndex
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.8.34.6.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.34.6.2
+
+- name: "SCORED | 18.8.37.2 | POLICY | L2 Ensure Restrict Unauthenticated RPC clients is set to Enabled Authenticated MS only"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Rpc
+    name: RestrictRemoteClients
+    data: 1
+    type: dword
+  when:
+    - cis[2019][2019]['18.8.37.2']
+    - not ansible_windows_domain_role == "Primary domain controller"
+  tags:
+    - memberserver
+    - control_18.8.37.2
+
+- name: "SCORED | 18.8.47.5.1 | POLICY | L2 Ensure Microsoft Support Diagnostic Tool Turn on MSDT interactive communication with support provider is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Scripteddiagnosticsprovider\Policy
+    name: DisableQueryRemoteServer
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.8.47.5.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.47.5.1
+
+- name: "SCORED | 18.8.47.11.1 | POLICY | L2 Ensure EnableDisable PerfTrack is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Wdi\{9C5A40Da-B965-4Fc3-8781-88Dd50A6299D}
+    name: ScenarioExecutionEnabled
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.8.47.11.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.47.11.1
+
+- name: "SCORED | 18.8.49.1 | POLICY | L2 Ensure Turn off the advertising ID is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Advertisinginfo
+    name: DisabledByGroupPolicy
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.49.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.49.1
+
+- name: "SCORED | 18.8.52.1.1 | POLICY | L2 Ensure Enable Windows NTP Client is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\W32Time\Timeproviders\Ntpclient
+    name: Enabled
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.8.52.1.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.8.52.1.1
+
+- name: "SCORED | 18.8.52.1.2 | POLICY | L2 Ensure Enable Windows NTP Server is set to Disabled MS only"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\W32Time\Timeproviders\Ntpserver
+    name: Enabled
+    data: 1
+    type: dword
+  when:
+    - cis[2019][2019]['18.8.52.1.2']
+    - not ansible_windows_domain_role == "Primary domain controller"
+  tags:
+    - memberserver
+    - control_18.8.52.1.2
+
+- name: "SCORED | 18.9.4.1 | POLICY | L2 Ensure Allow a Windows app to share application data between users is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Currentversion\Appmodel\Statemanager
+    name: AllowSharedLocalAppData
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.9.4.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.4.1
+
+- name: "SCORED | 18.9.12.1 | POLICY | L2 Ensure Allow Use of Camera is set to Disabled"
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Camera
+    name: AllowCamera
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.9.12.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.12.1
+
+- name: "SCORED | 18.9.16.2 | POLICY | L2 Ensure Configure Authenticated Proxy usage for the Connected User Experience and Telemetry service is set to Enabled Disable Authenticated Proxy usage"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Datacollection
+    name: DisableEnterpriseAuthProxy
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.9.16.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.16.2
+
+- name: "SCORED | 18.9.39.2 | POLICY | L2 Ensure Turn off location is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Locationandsensors
+    name: DisableLocation
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.9.39.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.39.2
+
+- name: "SCORED | 18.9.43.1 | POLICY | L2 Ensure Allow Message Service Cloud Sync is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Messaging
+    name: AllowMessageSync
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.9.43.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.43.1
+
+- name: "SCORED | 18.9.59.3.2.1 | POLICY | L2 Ensure Restrict Remote Desktop Services users to a single Remote Desktop Services session is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: fSingleSessionPerUser
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.9.59.3.2.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.59.3.2.1
+
+- name: "SCORED | 18.9.59.3.3.1 | POLICY | L2 Ensure Do not allow COM port redirection is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: fDisableCcm
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.9.59.3.3.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.59.3.3.1
+
+- name: "SCORED | 18.9.59.3.3.3 | POLICY | L2 Ensure Do not allow LPT port redirection is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: fDisableLPT
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.9.59.3.3.3']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.59.3.3.3
+
+- name: "SCORED | 18.9.59.3.3.4 | POLICY | L2 Ensure Do not allow supported Plug and Play device redirection is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: fDisablePNPRedir
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.9.59.3.3.4']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.59.3.3.4
+
+- name: "SCORED | 18.9.59.3.10.1 | POLICY | L2 Ensure Set time limit for active but idle Remote Desktop Services sessions is set to Enabled 15 minutes or less"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: MaxIdleTime
+    data: 3600000
+    type: dword
+  when: cis[2019][2019]['18.9.59.3.10.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.59.3.10.1
+
+- name: "SCORED | 18.9.59.3.10.2 | POLICY | L2 Ensure Set time limit for disconnected sessions is set to Enabled 1 minute"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: MaxDisconnectionTime
+    data: 28800000
+    type: dword
+  when: cis[2019][2019]['18.9.59.3.10.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.59.3.10.2
+
+- name: "SCORED | 18.9.61.2 | POLICY | L2 Ensure Allow Cloud Search is set to Enabled Disable Cloud Search"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Windows Search
+    name: AllowCloudSearch
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.9.61.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.61.2
+
+- name: "SCORED | 18.9.66.1 | POLICY | L2 Ensure Turn off KMS Client Online AVS Validation is set to Enabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Nt\Currentversion\Software Protection Platform
+    name: NoGenTicket
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.9.66.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.66.1
+
+- name: "SCORED | 18.9.77.3.2 | POLICY | L2 Ensure Join Microsoft MAPS is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet
+    name: SpynetReporting
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.9.77.3.2']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.77.3.2
+
+- name: "SCORED | 18.9.77.9.1 | POLICY | L2 Ensure Configure Watson events is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows Defender\Reporting
+    name: DisableGenericRePorts
+    data: 1
+    type: dword
+  when: cis[2019][2019]['18.9.77.9.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.77.9.1
+
+- name: "SCORED | 18.9.84.1 | POLICY | L2 Ensure Allow suggested apps in Windows Ink Workspace is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\WindowsInkWorkspace
+    name: AllowSuggestedAppsInWindowsInkWorkspace
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.9.84.1']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.84.1
+
+- name: "SCORED | 18.9.85.3 | POLICY | L2 Ensure Prevent Internet Explorer security prompt for Windows Installer scripts is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Installer
+    name: SafeForScripting
+    data: 0
+    type: dword
+  when: cis[2019][2019]['18.9.85.3']
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.85.3
+
+# This control will have to be set to Enabled (1) to allow for continued remote management via Ansible following machine restart
+- name: "SCORED | 18.9.97.2.2 | POLICY | L2 Ensure Allow remote server management through WinRM is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Winrm\Service
+    name: AllowAutoConfig
+    data: 1
+    type: dword
+  when:
+    - cis[2019][2019]['18.9.97.2.2']
+    - not win_skip_for_test
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.97.2.2
+
+# This control will have to be set to Enabled (1) to allow for continued remote management via Ansible following machine restart
+- name: "SCORED | 18.9.98.1 | POLICY | L2 Ensure Allow Remote Shell Access is set to Disabled"
+  win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Winrm\Service\Winrs
+    name: AllowRemoteShellAccess
+    data: 1
+    type: dword
+  when:
+    - cis[2019][2019]['18.9.98.1']
+    - not win_skip_for_test
+  tags:
+    - domaincontroller
+    - memberserver
+    - control_18.9.98.1
