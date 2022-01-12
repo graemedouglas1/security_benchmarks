@@ -347,7 +347,8 @@
       #- Local Account
       #- Administrators
     action: set
-  when: cis[2019]['2.2.21']
+  when:
+    - cis[2019]['2.2.21']
     - ansible_windows_domain_member
   tags:
     - memberserver
@@ -435,7 +436,8 @@
     name: SeEnableDelegationPrivilege
     users: []
     action: set
-  when: cis[2019]['2.2.28']
+  when:
+    - cis[2019]['2.2.28']
     - ansible_windows_domain_member
   tags:
     - memberserver
@@ -862,7 +864,8 @@
     name: signsecurechannel
     data: 1
     type: dword
-  when: cis[2019]['2.3.6.3']
+  when:
+    - cis[2019]['2.3.6.3']
     - not ansible_windows_domain_role == "Primary domain controller"
   tags:
     - domaincontroller
@@ -875,7 +878,8 @@
     name: disablepasswordchange
     data: 0
     type: dword
-  when: cis[2019]['2.3.6.4']
+  when:
+    - cis[2019]['2.3.6.4']
     - not ansible_windows_domain_role == "Primary domain controller"
   tags:
     - domaincontroller
@@ -988,7 +992,8 @@
     name: ForceUnlockLogon
     data: 1
     type: dword
-  when: cis[2019]['2.3.7.8']
+  when:
+    - cis[2019]['2.3.7.8']
     - ansible_windows_domain_role == "Member server"
   tags:
     - memberserver
