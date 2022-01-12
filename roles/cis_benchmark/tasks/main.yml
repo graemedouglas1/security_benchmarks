@@ -1,9 +1,0 @@
----
-
-- name: Include required facts
-  include_tasks:
-    file: 'facts.yml'
-
-- name: Include distribution specific standards
-  include_tasks:
-    file: "{{ os_version }}/main.yml"

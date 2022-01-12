@@ -1,0 +1,13 @@
+---
+
+- name: Include required facts
+  include_tasks:
+    file: 'facts.yml'
+
+- name: Include CIS distribution specific standards
+  include_tasks:
+    file: "cis/main.yml"
+
+- name: Include NIST distribution specific standards
+  include_tasks:
+    file: "nist/main.yml"

@@ -27,5 +27,4 @@
       tags: [ 'always' ]
   
   roles:
-    - cis_benchmark
-    - nist_benchmark
+    - standards

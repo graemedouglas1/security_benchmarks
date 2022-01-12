@@ -1,0 +1,12 @@
+---
+
+# Import CIS Tests
+- name: Import NIST Tests
+  include_tasks: 
+    file: {{ os_version }}/asserts.yml
+  run_once: yes
+
+# Apply NIST Security Standard
+- name: Apply NIST Security Standards
+  include_tasks:
+    file: {{ os_version }}/standards.yml

@@ -1,15 +1,8 @@
 ---
 
-- name: Windows version as fact
-  set_fact:
-    os_version: "{{ ansible_distribution | regex_search('Windows Server (2016|2019)') }}"
-    delegate_to: master
-    run_once: true
-    tags: [ 'always' ]
-
 - name: Set system facts based on gather facts module
   block:
-      - name: Set fact is system is standalone
+      - name: Set fact if system is standalone
         set_fact:
             win2019cis_is_standalone: true
         when:
@@ -36,3 +29,7 @@
 - name: Set Windows installation type
   set_fact:
     windows_installation_type: "{{ get_windows_installation_type.value | default('') }}"
+
+- name: Set Windows version
+  set_fact:
+    os_version: "{{ ansible_distribution | regex_search('Windows Server (2016|2019)') }}"

@@ -3,15 +3,15 @@
 # Import CIS Tests
 - name: Import CIS Tests
   include_tasks: 
-    file: cis_standards/asserts.yml
+    file: {{ os_version }}/asserts.yml
   run_once: yes
 
 # Apply CIS Policies
 - name: Apply CIS Level 1 Policies
   include_tasks:
-    file: cis_standards/Level1.yml
+    file: {{ os_version }}/Level1.yml
 
 # Apply CIS Policies
 - name: Apply CIS Level 2 Policies
   include_tasks:
-    file: cis_standards/Level2.yml
+    file: {{ os_version }}/Level2.yml
