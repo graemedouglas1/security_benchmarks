@@ -5,7 +5,8 @@
     name: SeBatchLogonRight
     users: Administrators
     action: set
-  when: cis[2019]['2.2.36']
+  when:
+    - cis[2019]['2.2.36']
     - ansible_windows_domain_role == "Primary domain controller"
   tags:
     - domaincontroller
@@ -40,7 +41,7 @@
     name: AllowOnlineTips
     data: 0
     type: dword
-  when: cis[2019][2019]['18.1.3']
+  when: cis[2019]['18.1.3']
   tags:
     - domaincontroller
     - memberserver
@@ -53,7 +54,7 @@
     value: KeepAliveTime
     data: 300000
     datatype: dword
-  when: cis[2019][2019]['18.4.5']
+  when: cis[2019]['18.4.5']
   tags:
     - domaincontroller
     - memberserver
@@ -66,7 +67,7 @@
     name: PerformRouterDiscovery
     data: 0
     type: dword
-  when: cis[2019][2019]['18.4.7']
+  when: cis[2019]['18.4.7']
   tags:
     - domaincontroller
     - memberserver
@@ -78,7 +79,7 @@
     name: TcpMaxDataRetransmissions
     data: 3
     type: dword
-  when: cis[2019][2019]['18.4.10']
+  when: cis[2019]['18.4.10']
   tags:
     - domaincontroller
     - memberserver
@@ -90,7 +91,7 @@
     name: TcpMaxDataRetransmissions
     data: 3
     type: dword
-  when: cis[2019][2019]['18.4.11']
+  when: cis[2019]['18.4.11']
   tags:
     - domaincontroller
     - memberserver
@@ -102,7 +103,7 @@
     name: EnableFontProviders
     data: 0
     type: dword
-  when: cis[2019][2019]['18.5.5.1']
+  when: cis[2019]['18.5.5.1']
   tags:
     - domaincontroller
     - memberserver
@@ -137,7 +138,7 @@
         name: ProhibitLLTDIOOnPrivateNet
         data: 0
         type: dword
-  when: cis[2019][2019]['18.5.9.1']
+  when: cis[2019]['18.5.9.1']
   tags:
     - domaincontroller
     - memberserver
@@ -172,7 +173,7 @@
         name: ProhibitRspndrOnPrivateNet
         data: 0
         type: dword
-  when: cis[2019][2019]['18.5.9.2']
+  when: cis[2019]['18.5.9.2']
   tags:
     - domaincontroller
     - memberserver
@@ -184,7 +185,7 @@
     name: Disabled
     data: 1
     type: dword
-  when: cis[2019][2019]['18.5.10.2']
+  when: cis[2019]['18.5.10.2']
   tags:
     - domaincontroller
     - memberserver
@@ -196,7 +197,7 @@
     name: DisabledComponents
     data: 255
     type: dword
-  when: cis[2019][2019]['18.5.19.2.1']
+  when: cis[2019]['18.5.19.2.1']
   tags:
     - domaincontroller
     - memberserver
@@ -238,7 +239,7 @@
         name: DisableWPDRegistrar
         data: 0
         type: dword
-  when: cis[2019][2019]['18.5.20.1']
+  when: cis[2019]['18.5.20.1']
   tags:
     - domaincontroller
     - memberserver
@@ -250,7 +251,7 @@
     name: DisableWcnUi
     data: 1
     type: dword
-  when: cis[2019][2019]['18.5.20.2']
+  when: cis[2019]['18.5.20.2']
   tags:
     - domaincontroller
     - memberserver
@@ -262,7 +263,8 @@
     name: fBlockNonDomain
     data: 1
     type: dword
-  when: cis[2019][2019]['18.5.21.2']
+  when:
+    - cis[2019][2019]['18.5.21.2']
     - not ansible_windows_domain_role == "Primary domain controller"
   tags:
     - memberserver
@@ -274,7 +276,7 @@
     name: NoCloudApplicationNotification
     data: 1
     type: dword
-  when: cis[2019][2019]['18.7.1.1']
+  when: cis[2019]['18.7.1.1']
   tags:
     - domaincontroller
     - memberserver
@@ -286,7 +288,7 @@
     name: PreventHandwritingDataSharing
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.22.1.2']
+  when: cis[2019]['18.8.22.1.2']
   tags:
     - domaincontroller
     - memberserver
@@ -298,7 +300,7 @@
     name: PreventHandwritingErrorReports
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.22.1.3']
+  when: cis[2019]['18.8.22.1.3']
   tags:
     - domaincontroller
     - memberserver
@@ -310,7 +312,7 @@
     name: ExitOnMSICW
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.22.1.4']
+  when: cis[2019]['18.8.22.1.4']
   tags:
     - domaincontroller
     - memberserver
@@ -322,7 +324,7 @@
     name: DisableHTTPPrinting
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.22.1.6']
+  when: cis[2019]['18.8.22.1.6']
   tags:
     - domaincontroller
     - memberserver
@@ -334,7 +336,7 @@
     name: NoRegistration
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.22.1.7']
+  when: cis[2019]['18.8.22.1.7']
   tags:
     - domaincontroller
     - memberserver
@@ -346,7 +348,7 @@
     name: DisableContentFileUpdates
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.22.1.8']
+  when: cis[2019]['18.8.22.1.8']
   tags:
     - domaincontroller
     - memberserver
@@ -358,7 +360,7 @@
     name: NoOnlinePrintsWizard
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.22.1.9']
+  when: cis[2019]['18.8.22.1.9']
   tags:
     - domaincontroller
     - memberserver
@@ -370,7 +372,7 @@
     name: NoPublishingWizard
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.22.1.10']
+  when: cis[2019]['18.8.22.1.10']
   tags:
     - domaincontroller
     - memberserver
@@ -382,7 +384,7 @@
     name: CEIP
     data: 2
     type: dword
-  when: cis[2019][2019]['18.8.22.1.11']
+  when: cis[2019]['18.8.22.1.11']
   tags:
     - domaincontroller
     - memberserver
@@ -394,7 +396,7 @@
     name: CEIPEnable
     data: 0
     type: dword
-  when: cis[2019][2019]['18.8.22.1.12']
+  when: cis[2019]['18.8.22.1.12']
   tags:
     - domaincontroller
     - memberserver
@@ -415,7 +417,7 @@
         name: DoReport
         data: 0
         type: dword
-  when: cis[2019][2019]['18.8.22.1.13']
+  when: cis[2019]['18.8.22.1.13']
   tags:
     - domaincontroller
     - memberserver
@@ -436,7 +438,7 @@
         name: DevicePKInitEnabled
         data: 1
         type: dword
-  when: cis[2019][2019]['18.8.25.1']
+  when: cis[2019]['18.8.25.1']
   tags:
     - domaincontroller
     - memberserver
@@ -448,7 +450,7 @@
     name: BlockUserInputMethodsForSignIn
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.27.1']
+  when: cis[2019]['18.8.27.1']
   tags:
     - domaincontroller
     - memberserver
@@ -460,7 +462,7 @@
     name: AllowCrossDeviceClipboard
     data: 0
     type: dword
-  when: cis[2019][2019]['18.8.31.1']
+  when: cis[2019]['18.8.31.1']
   tags:
     - domaincontroller
     - memberserver
@@ -472,7 +474,7 @@
     name: UploadUserActivities
     data: 0
     type: dword
-  when: cis[2019][2019]['18.8.31.2']
+  when: cis[2019]['18.8.31.2']
   tags:
     - domaincontroller
     - memberserver
@@ -484,7 +486,7 @@
     name: DCSettingIndex
     data: 0
     type: dword
-  when: cis[2019][2019]['18.8.34.6.1']
+  when: cis[2019]['18.8.34.6.1']
   tags:
     - domaincontroller
     - memberserver
@@ -496,7 +498,7 @@
     name: ACSettingIndex
     data: 0
     type: dword
-  when: cis[2019][2019]['18.8.34.6.2']
+  when: cis[2019]['18.8.34.6.2']
   tags:
     - domaincontroller
     - memberserver
@@ -521,7 +523,7 @@
     name: DisableQueryRemoteServer
     data: 0
     type: dword
-  when: cis[2019][2019]['18.8.47.5.1']
+  when: cis[2019]['18.8.47.5.1']
   tags:
     - domaincontroller
     - memberserver
@@ -533,7 +535,7 @@
     name: ScenarioExecutionEnabled
     data: 0
     type: dword
-  when: cis[2019][2019]['18.8.47.11.1']
+  when: cis[2019]['18.8.47.11.1']
   tags:
     - domaincontroller
     - memberserver
@@ -545,7 +547,7 @@
     name: DisabledByGroupPolicy
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.49.1']
+  when: cis[2019]['18.8.49.1']
   tags:
     - domaincontroller
     - memberserver
@@ -557,7 +559,7 @@
     name: Enabled
     data: 1
     type: dword
-  when: cis[2019][2019]['18.8.52.1.1']
+  when: cis[2019]['18.8.52.1.1']
   tags:
     - domaincontroller
     - memberserver
@@ -582,7 +584,7 @@
     name: AllowSharedLocalAppData
     data: 0
     type: dword
-  when: cis[2019][2019]['18.9.4.1']
+  when: cis[2019]['18.9.4.1']
   tags:
     - domaincontroller
     - memberserver
@@ -594,7 +596,7 @@
     name: AllowCamera
     data: 1
     type: dword
-  when: cis[2019][2019]['18.9.12.1']
+  when: cis[2019]['18.9.12.1']
   tags:
     - domaincontroller
     - memberserver
@@ -606,7 +608,7 @@
     name: DisableEnterpriseAuthProxy
     data: 0
     type: dword
-  when: cis[2019][2019]['18.9.16.2']
+  when: cis[2019]['18.9.16.2']
   tags:
     - domaincontroller
     - memberserver
@@ -618,7 +620,7 @@
     name: DisableLocation
     data: 1
     type: dword
-  when: cis[2019][2019]['18.9.39.2']
+  when: cis[2019]['18.9.39.2']
   tags:
     - domaincontroller
     - memberserver
@@ -630,7 +632,7 @@
     name: AllowMessageSync
     data: 0
     type: dword
-  when: cis[2019][2019]['18.9.43.1']
+  when: cis[2019]['18.9.43.1']
   tags:
     - domaincontroller
     - memberserver
@@ -642,7 +644,7 @@
     name: fSingleSessionPerUser
     data: 1
     type: dword
-  when: cis[2019][2019]['18.9.59.3.2.1']
+  when: cis[2019]['18.9.59.3.2.1']
   tags:
     - domaincontroller
     - memberserver
@@ -654,7 +656,7 @@
     name: fDisableCcm
     data: 1
     type: dword
-  when: cis[2019][2019]['18.9.59.3.3.1']
+  when: cis[2019]['18.9.59.3.3.1']
   tags:
     - domaincontroller
     - memberserver
@@ -666,7 +668,7 @@
     name: fDisableLPT
     data: 1
     type: dword
-  when: cis[2019][2019]['18.9.59.3.3.3']
+  when: cis[2019]['18.9.59.3.3.3']
   tags:
     - domaincontroller
     - memberserver
@@ -678,7 +680,7 @@
     name: fDisablePNPRedir
     data: 1
     type: dword
-  when: cis[2019][2019]['18.9.59.3.3.4']
+  when: cis[2019]['18.9.59.3.3.4']
   tags:
     - domaincontroller
     - memberserver
@@ -690,7 +692,7 @@
     name: MaxIdleTime
     data: 3600000
     type: dword
-  when: cis[2019][2019]['18.9.59.3.10.1']
+  when: cis[2019]['18.9.59.3.10.1']
   tags:
     - domaincontroller
     - memberserver
@@ -702,7 +704,7 @@
     name: MaxDisconnectionTime
     data: 28800000
     type: dword
-  when: cis[2019][2019]['18.9.59.3.10.2']
+  when: cis[2019]['18.9.59.3.10.2']
   tags:
     - domaincontroller
     - memberserver
@@ -714,7 +716,7 @@
     name: AllowCloudSearch
     data: 0
     type: dword
-  when: cis[2019][2019]['18.9.61.2']
+  when: cis[2019]['18.9.61.2']
   tags:
     - domaincontroller
     - memberserver
@@ -726,7 +728,7 @@
     name: NoGenTicket
     data: 1
     type: dword
-  when: cis[2019][2019]['18.9.66.1']
+  when: cis[2019]['18.9.66.1']
   tags:
     - domaincontroller
     - memberserver
@@ -738,7 +740,7 @@
     name: SpynetReporting
     data: 0
     type: dword
-  when: cis[2019][2019]['18.9.77.3.2']
+  when: cis[2019]['18.9.77.3.2']
   tags:
     - domaincontroller
     - memberserver
@@ -750,7 +752,7 @@
     name: DisableGenericRePorts
     data: 1
     type: dword
-  when: cis[2019][2019]['18.9.77.9.1']
+  when: cis[2019]['18.9.77.9.1']
   tags:
     - domaincontroller
     - memberserver
@@ -762,7 +764,7 @@
     name: AllowSuggestedAppsInWindowsInkWorkspace
     data: 0
     type: dword
-  when: cis[2019][2019]['18.9.84.1']
+  when: cis[2019]['18.9.84.1']
   tags:
     - domaincontroller
     - memberserver
@@ -774,7 +776,7 @@
     name: SafeForScripting
     data: 0
     type: dword
-  when: cis[2019][2019]['18.9.85.3']
+  when: cis[2019]['18.9.85.3']
   tags:
     - domaincontroller
     - memberserver
@@ -810,85 +812,85 @@
     - memberserver
     - control_18.9.98.1
 
-- name: "SCORED | 19.6.6.1.1 | PATCH | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
+- name: "SCORED | 19.6.6.1.1 | POLICY | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
   block:
-    - name: "SCORED | 19.6.6.1.1 | PATCH | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
+    - name: "SCORED | 19.6.6.1.1 | POLICY | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
       win_regedit:
         path: HKU:\.DEFAULT\Software\Policies\Microsoft\Assistance\Client\1.0
         name: NoImplicitFeedback
         data: 1
         type: dword
 
-    - name: "SCORED | 19.6.6.1.1 | PATCH | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
+    - name: "SCORED | 19.6.6.1.1 | POLICY | L2 Ensure Turn off Help Experience Improvement Program is set to Enabled"
       win_regedit:
         path: HKCU:\Software\Policies\Microsoft\Assistance\Client\1.0
         name: NoImplicitFeedback
         data: 1
         type: dword
-  when: cis[2019][2019]['19.6.6.1.1']
+  when: cis[2019]['19.6.6.1.1']
   tags:
     - domaincontroller
     - memberserver
     - control_19.6.6.1.1
 
-- name: "SCORED | 19.7.7.3 | PATCH | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
+- name: "SCORED | 19.7.7.3 | POLICY | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
   block:
-    - name: "SCORED | 19.7.7.3 | PATCH | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
+    - name: "SCORED | 19.7.7.3 | POLICY | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
       win_regedit:
         path: HKU:\.DEFAULT\Software\Policies\Microsoft\Windows\CloudContent
         name: DisableTailoredExperiencesWithDiagnosticData
         data: 1
         type: dword
 
-    - name: "SCORED | 19.7.7.3 | PATCH | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
+    - name: "SCORED | 19.7.7.3 | POLICY | L2 Ensure Do not use diagnostic data for tailored experiences is set to Enabled"
       win_regedit:
         path: HKCU:\Software\Policies\Microsoft\Windows\CloudContent
         name: DisableTailoredExperiencesWithDiagnosticData
         data: 1
         type: dword
-  when: cis[2019][2019]['19.7.7.3']
+  when: cis[2019]['19.7.7.3']
   tags:
     - domaincontroller
     - memberserver
     - control_19.7.7.3
 
-- name: "SCORED | 19.7.7.4 | PATCH | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
+- name: "SCORED | 19.7.7.4 | POLICY | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
   block:
-    - name: "SCORED | 19.7.7.4 | PATCH | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
+    - name: "SCORED | 19.7.7.4 | POLICY | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
       win_regedit:
         path: HKU:\.DEFAULT\Software\Policies\Microsoft\Windows\CloudContent
         name: DisableWindowsSpotlightFeatures
         data: 1
         type: dword
 
-    - name: "SCORED | 19.7.7.4 | PATCH | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
+    - name: "SCORED | 19.7.7.4 | POLICY | L2 Ensure Turn off all Windows spotlight features is set to Enabled"
       win_regedit:
         path: HKCU:\Software\Policies\Microsoft\Windows\CloudContent
         name: DisableWindowsSpotlightFeatures
         data: 1
         type: dword
-  when: cis[2019][2019]['19.7.7.4']
+  when: cis[2019]['19.7.7.4']
   tags:
     - domaincontroller
     - memberserver
     - control_19.7.7.4
 
-- name: "SCORED | 19.7.45.2.1 | PATCH | L2 Ensure Prevent Codec Download is set to Enabled"
+- name: "SCORED | 19.7.45.2.1 | POLICY | L2 Ensure Prevent Codec Download is set to Enabled"
   block:
-    - name: "SCORED | 19.7.45.2.1 | PATCH | L2 Ensure Prevent Codec Download is set to Enabled"
+    - name: "SCORED | 19.7.45.2.1 | POLICY | L2 Ensure Prevent Codec Download is set to Enabled"
       win_regedit:
         path: HKU:\.DEFAULT\Software\Policies\Microsoft\Windowsmediaplayer
         name: PreventCodecDownload
         data: 1
         type: dword
 
-    - name: "SCORED | 19.7.45.2.1 | PATCH | L2 Ensure Prevent Codec Download is set to Enabled"
+    - name: "SCORED | 19.7.45.2.1 | POLICY | L2 Ensure Prevent Codec Download is set to Enabled"
       win_regedit:
         path: HKCU:\Software\Policies\Microsoft\Windowsmediaplayer
         name: PreventCodecDownload
         data: 1
         type: dword
-  when: cis[2019][2019]['19.7.45.2.1']
+  when: cis[2019]['19.7.45.2.1']
   tags:
     - domaincontroller
     - memberserver
