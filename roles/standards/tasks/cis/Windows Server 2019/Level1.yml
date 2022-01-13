@@ -5,7 +5,7 @@
   when: item.1.enabled
   ignore_errors: true
   with_subelements:
-    - "{{ 2019 }}"
+    - "{{ r2019 }}"
     - properties
     
 # Section 1
