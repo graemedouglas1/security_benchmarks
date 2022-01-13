@@ -49,7 +49,7 @@
 
 - name: "SCORED | 1.2.2 | AUDIT | L1 Ensure Account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"
   assert:
-    that: lockoutbadcount | int is version('10', '<=') and int is version('0', '>')
+    that: lockoutbadcount | int is version('10', '<=') and version('0', '>')
     fail_msg: "Must have the account lockout threshold set to 10 or fewer invalid logon attempts but not 0 and variable lockoutbadcount is set to {{ lockoutbadcount }}"
   changed_when: false
   ignore_errors: true
