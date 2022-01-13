@@ -10,7 +10,11 @@
     - "{{ item.1.enabled }}"
   tags:
     - "{{ item.1.tags }}"
-    
+  with_subelements:
+    - "{{ r2019 }}"
+    - properties
+
+
 # Section 1
 
 - name: "SCORED | 1.1.1 | POLICY | L1 Ensure Enforce password history is set to 24 or more passwords"
