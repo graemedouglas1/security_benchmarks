@@ -40,7 +40,7 @@
   ignore_errors: true
   register: result
 
-- name: "SCORED | 1.1.6 | PATCH | L1 Ensure Store passwords using reversible encryption is set to Disabled"
+- name: "SCORED | 1.1.6 | AUDIT | L1 Ensure Store passwords using reversible encryption is set to Disabled"
   assert:
     that: cleartextpassword is version('0', '=')
     fail_msg: "Ensure Store passwords using reversible encryption is set to Disabled and variable cleartextpassword is set to {{ cleartextpassword }}"
