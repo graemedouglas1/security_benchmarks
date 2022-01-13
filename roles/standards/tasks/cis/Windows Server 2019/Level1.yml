@@ -1,12 +1,15 @@
 ---
 
-- name: Iterate the vars inside var4 when recursive
-  debug: msg="Reference is {{ item.0.reference }}, Enabled is {{ item.1.enabled }} and passwordhistorysize is {{ item.1.passwordhistorysize }}"
-  when: item.1.enabled
-  ignore_errors: true
-  with_subelements:
-    - "{{ r2019 }}"
-    - properties
+- name: 1.1.1 | Ensure Enforce password history is set to 24 or more passwords
+  win_security_policy:
+    section: System Access
+    key: PasswordHistorySize
+    value: "{{ item.1.passwordhistorysize }}"
+  when:
+    - "{{ item.0.reference }}"
+    - "{{ item.1.enabled }}"
+  tags:
+    - "{{ item.1.tags }}"
     
 # Section 1
 
