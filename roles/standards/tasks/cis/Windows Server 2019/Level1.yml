@@ -8,12 +8,11 @@
   when:
     - "{{ item.0.reference }}"
     - "{{ item.1.enabled }}"
-  tags:
-    - "{{ item.1.tags }}"
+  #tags:
+  #  - "{{ item.1.tags }}"
   with_subelements:
     - "{{ r2019 }}"
     - properties
-
 
 # Section 1
 
