@@ -1,6 +1,6 @@
 ---
 
-- name: 1.1.1 | Ensure Enforce password history is set to 24 or more passwords
+- name: "1.1.1 | Ensure Enforce password history is set to 24 or more passwords"
   win_security_policy:
     section: System Access
     key: PasswordHistorySize
