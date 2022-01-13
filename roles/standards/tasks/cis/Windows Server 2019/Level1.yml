@@ -6,7 +6,7 @@
     key: PasswordHistorySize
     value: "{{ item.1.passwordhistorysize }}"
   when:
-    - "{{ item.0.reference }}" == "1.1.1"
+    - "{{ item.0.reference }} == 1.1.1"
     - "{{ item.1.enabled }}"
   with_subelements:
     - "{{ r2019 }}"
