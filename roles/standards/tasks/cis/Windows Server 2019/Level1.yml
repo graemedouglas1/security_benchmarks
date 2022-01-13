@@ -7,7 +7,7 @@
     section: System Access
     key: PasswordHistorySize
     value: "{{ passwordhistorysize }}"
-  when: cis[2019][1.1.1]
+  when: cis[2019]['1.1.1']
   tags:
     - domaincontroller
     - memberserver
@@ -18,7 +18,7 @@
     section: System Access
     key: MaximumPasswordAge
     value: "{{ maximumpasswordage }}"
-  when: cis[2019][1.1.2]
+  when: cis[2019]['1.1.2']
   tags:
     - domaincontroller
     - memberserver
