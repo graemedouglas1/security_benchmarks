@@ -838,6 +838,8 @@ lockoutduration: 15
 lockoutbadcount: 3
 resetlockoutcount: 15
 passwordhistorysize: 24
+passwordcomplexity: 1
+cleartextpassword: 0
 maximumpasswordage: 60
 minimumpasswordage: 1
 minimumpasswordlength: 14

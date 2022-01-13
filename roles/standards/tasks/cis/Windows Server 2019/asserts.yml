@@ -1,7 +1,5 @@
 ---
 
-# Section 1
-
 - name: "SCORED | 1.1.1 | AUDIT | L1 Ensure Enforce password history is set to 24 or more passwords"
   assert:
     that: passwordhistorysize | int is version('24', '>=')
@@ -17,7 +15,6 @@
   changed_when: false
   ignore_errors: true
   register: result
-
 
 - name: "SCORED | 1.1.3 | AUDIT | L1 Ensure Minimum password age is set to 1 or more days"
   assert:
@@ -35,9 +32,21 @@
   ignore_errors: true
   register: result
 
-#- name: "SCORED | 1.1.5 | PATCH | L1 Ensure Password must meet complexity requirements is set to Enabled"
+- name: "SCORED | 1.1.5 | AUDIT | L1 Ensure Password must meet complexity requirements is set to Enabled"
+  assert:
+    that: passwordcomplexity is version('1', '=')
+    fail_msg: "Ensure password must meet complexity requirements is set to Enabled and variable passwordcomplexity is set to {{ passwordcomplexity }}"
+  changed_when: false
+  ignore_errors: true
+  register: result
 
-#- name: "SCORED | 1.1.6 | PATCH | L1 Ensure Store passwords using reversible encryption is set to Disabled"
+- name: "SCORED | 1.1.6 | PATCH | L1 Ensure Store passwords using reversible encryption is set to Disabled"
+  assert:
+    that: cleartextpassword is version('0', '=')
+    fail_msg: "Ensure Store passwords using reversible encryption is set to Disabled and variable cleartextpassword is set to {{ cleartextpassword }}"
+  changed_when: false
+  ignore_errors: true
+  register: result
 
 - name: "SCORED | 1.2.1 | AUDIT | L1 Ensure Account lockout duration is set to 15 or more minutes"
   assert:
