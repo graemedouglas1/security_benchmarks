@@ -1,7 +1,7 @@
 ---
 
 - name: Iterate the vars inside var4 when recursive
-  debug: msg="Enabled is {{ item.0.reference }} and passwordhistorysize is {{ item.1.passwordhistorysize }}"
+  debug: msg="Reference is {{ item.0.reference }}, Enabled is {{ item.1.enabled }} and passwordhistorysize is {{ item.1.passwordhistorysize }}"
   when: item.1.enabled
   ignore_errors: true
   with_subelements:
