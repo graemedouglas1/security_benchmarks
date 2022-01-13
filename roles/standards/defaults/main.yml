@@ -40,9 +40,9 @@ win_skip_for_test: false
 # in order for the variables below to take effect.
 
 2019:
-  - reference: '1.1.1'
-    properties:
-      enabled: true
+- reference: '1.1.1'
+  properties:
+    - enabled: true
       passwordhistorysize: 24
 
 cis:
