@@ -41,13 +41,20 @@
 
 - name: "SCORED | 1.2.1 | AUDIT | L1 Ensure Account lockout duration is set to 15 or more minutes"
   assert:
-    that: lockoutduration | int is version('15', '<=')
+    that: lockoutduration | int is version('15', '<=') | int is version('0', '>')
     fail_msg: "Must have the period of time before the bad logon counter is reset configured to 15 minutes or greater and variable lockoutduration is set to {{ lockoutduration }}"
   changed_when: false
   ignore_errors: true
   register: result
 
-#- name: "SCORED | 1.2.2 | AUDIT | L1 Ensure Account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"
+- name: "SCORED | 1.2.2 | AUDIT | L1 Ensure Account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"
+  assert:
+    that: lockoutbadcount | int is version('10', '<=')
+    fail_msg: "Must have the account lockout threshold set to 10 or fewer invalid logon attempts but not 0 and variable lockoutbadcount is set to {{ lockoutbadcount }}"
+  changed_when: false
+  ignore_errors: true
+  register: result
+
 
 - name: "SCORED | 1.2.3 | AUDIT | L1 Ensure Reset account lockout counter after is set to 15 or more minutes"
   assert:
