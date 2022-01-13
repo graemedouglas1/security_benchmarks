@@ -835,7 +835,7 @@ sedebugprivilege: "*S-1-5-32-544"
 pass_age: 60
 
 lockoutduration: 15
-lockoutbadcount: 0
+lockoutbadcount: 11
 resetlockoutcount: 15
 passwordhistorysize: 24
 maximumpasswordage: 60
