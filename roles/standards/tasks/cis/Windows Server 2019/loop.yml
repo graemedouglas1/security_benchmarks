@@ -7,7 +7,6 @@
     value: "{{ item.1.value }}"
   when:
     - "{{ item.0.enabled }}"
-    - item.0.reference == "1.1.1"
   with_subelements:
     - "{{ r2019 }}"
     - properties
