@@ -1,10 +1,12 @@
 ---
 
-- name: "Apply System Access" 
+# Apply all security policies relating to server role
+- name: "Apply Security Policies 
   win_security_policy:
     section: 'System Access'
     key: "{{ item.value.properties.key }}"
     value: "{{ item.value.properties.value }}"
+  when:
     - item.value.enabled
     - "server_role == {{ item.value.properties.role }}"
   tags: item.value.tags
@@ -13,11 +15,13 @@
     label: "{{ item.value.name }}"
     index_var: my_idx
 
+# Apply all user rights relating to server role
 - name: "Apply User Rights" 
   win_user_right:
     name: "{{ item.value.properties.name }}"
     users: "{{ item.value.properties.users }}"
     action: "{{ item.value.properties.action }}"
+  when:
     - item.value.enabled
     - "server_role == {{ item.value.properties.role }}"
   tags: item.value.tags
@@ -25,6 +29,8 @@
   loop_control:
     label: "{{ item.value.name }}"
 
+
+# Apply all security registry keys relating to server role
 - name: "Apply Registry Keys"
   win_regedit:
     path: "{{ item.value.properties.path }}"
