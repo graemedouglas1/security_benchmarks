@@ -1,12 +1,8 @@
 ---
 
-- name: "ensure all template files are rendered"
+- name: "{{ item.value }}"
   win_security_policy:
-    section: "{{ item.1.section }}"
-    key: "{{ item.1.key }}"
-    value: "{{ item.1.value }}"
-  # Define a 'list of hashes' for the loop module to iterate over
-  # Each item has a 'src' and a 'dest'
-  loop: "{{ r2019 }}"
-  loop_control:
-    index_var: my_idx
+    section: System Access
+    key: PasswordHistorySize
+    value: 24
+  with_dict: "{{ r2019 }}"
