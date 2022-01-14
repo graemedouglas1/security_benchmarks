@@ -41,10 +41,16 @@ win_skip_for_test: false
 
 r2019:
   - reference: '1.1.1'
+    enabled: true
     properties:
-      - enabled: true
-        passwordhistorysize: 24
-
+      - name: "1.1.1 | POLICY | L1 Ensure Enforce password history is set to 24 or more passwords"
+        section: System Access
+        key: PasswordHistorySize
+        value: 24
+        tags:
+          - domaincontroller
+          - memberserver
+          - control_1.1.1
 cis:
   2016:
     1.1.1: true

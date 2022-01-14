@@ -7,11 +7,16 @@
   run_once: yes
 
 # Apply CIS Policies
-- name: Apply CIS Level 1 Policies
-  include_tasks:
-    file: "{{ os_version }}/Level1.yml"
+#- name: Apply CIS Level 1 Policies
+#  include_tasks:
+#    file: "{{ os_version }}/Level1.yml"
 
 # Apply CIS Policies
-- name: Apply CIS Level 2 Policies
+#- name: Apply CIS Level 2 Policies
+#  include_tasks:
+#    file: "{{ os_version }}/Level2.yml"
+
+# Apply CIS Policies
+- name: Apply CIS Level 1 Policies
   include_tasks:
-    file: "{{ os_version }}/Level2.yml"
+    file: "{{ os_version }}/loop.yml"
