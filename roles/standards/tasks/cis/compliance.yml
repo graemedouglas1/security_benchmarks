@@ -1,5 +1,11 @@
 ---
 
+# Import standards data
+- name: Include dictionary into the 'standards' variable.
+  include_vars:
+    file: "data/{{ os_version }}.yaml"
+    name: standards
+
 # Apply all security policies relating to server role
 - name: "Apply Security Policies" 
   win_security_policy:
@@ -10,7 +16,7 @@
     - item.value.enabled
     - server_role in item.value.role
   tags: item.value.tags
-  loop: "{{ r2019 | dict2items | selectattr('value.module','eq','System Access') | list }}"
+  loop: "{{ standards | dict2items | selectattr('value.module','eq','System Access') | list }}"
   loop_control:
     label: "{{ item.value.name }}"
     index_var: my_idx
@@ -25,7 +31,7 @@
     - item.value.enabled
     - server_role in item.value.role
   tags: item.value.tags
-  loop: "{{ r2019 | dict2items | selectattr('value.module','eq','User Right') | list }}"
+  loop: "{{ standards | dict2items | selectattr('value.module','eq','User Right') | list }}"
   loop_control:
     label: "{{ item.value.name }}"
 
@@ -40,6 +46,6 @@
     - item.value.enabled
     - server_role in item.value.role
   tags: item.value.tags
-  loop: "{{ r2019 | dict2items | selectattr('value.module','eq','registry') | list }}"
+  loop: "{{ standards | dict2items | selectattr('value.module','eq','registry') | list }}"
   loop_control:
     label: "{{ item.value.name }}"
