@@ -19,4 +19,4 @@
 # Apply CIS Policies
 - name: Apply CIS Level 1 Policies
   include_tasks:
-    file: "compliance.yml"
+    file: "apply.yml"
