@@ -10,7 +10,7 @@
     section: 'System Access'
     key: "{{ item[1]key }}"
     value: "{{ item[1]value }}"
-  when: "{{ item[0]enabled }}"
+  when: "{{ item[0]enabled.value }}"
   loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
 
 - name: "Apply User Rights"
