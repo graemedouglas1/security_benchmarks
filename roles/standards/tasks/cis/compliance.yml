@@ -3,7 +3,7 @@
 # Import standards data
 - name: Include dictionary into the 'standards' variable.
   include_vars:
-    file: "data/{{ os_version }}.yaml"
+    file: "data/{{ os_version }}.yml"
     name: standards
 
 # Apply all security policies relating to server role
