@@ -1,11 +1,5 @@
 ---
 
-# Import standards data
-- name: Include dictionary into the 'standards' variable.
-  include_vars:
-    file: "data/{{ os_version }}.yml"
-    name: standards
-
 # Apply all security policies relating to server role
 - name: "Apply Security Policies" 
   win_security_policy:
