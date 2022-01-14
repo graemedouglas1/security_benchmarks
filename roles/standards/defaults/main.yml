@@ -43,6 +43,7 @@ r2019:
   1.1.1:
     name: "1.1.1 - L1 Ensure Enforce password history is set to 24 or more passwords"
     module: System Access
+    role: ['member', 'dc']
     enabled: true
     properties:
       key: PasswordHistorySize
@@ -54,6 +55,7 @@ r2019:
   1.1.2:
     name: "1.1.2 - L1 Ensure Maximum password age is set to 60 or fewer days but not 0"
     module: System Access
+    role: ['member', 'dc']
     enabled: true
     properties:
       key: MaximumPasswordAge
@@ -65,6 +67,7 @@ r2019:
   2.2.1:
     name: "2.2.1 - L1 Ensure Access Credential Manager as a trusted caller is set to No One"
     module: User Right
+    role: ['member', 'dc']
     enabled: true
     properties:
       name: SeTrustedCredManAccessPrivilege
@@ -77,6 +80,7 @@ r2019:
   2.3.1.2:
     name: "2.3.1.2 - L1 Ensure Accounts Block Microsoft accounts is set to Users cant add or log on with Microsoft accounts"
     module: registry
+    role: ['member', 'dc']
     enabled: true
     properties:
       path: HKLM:\Software\Microsoft\Windows\Currentversion\Policies\System
