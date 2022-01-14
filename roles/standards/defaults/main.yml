@@ -65,6 +65,7 @@ r2019:
   2.2.1:
     name: "L1 Ensure Access Credential Manager as a trusted caller is set to No One"
     section: User Right
+    enabled: true
     properties:
       name: SeTrustedCredManAccessPrivilege
       users: []

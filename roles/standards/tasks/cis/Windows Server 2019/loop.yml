@@ -1,9 +1,5 @@
 ---
 
-- name: Construct 
-  debug:
-    msg: "Run"
-
 - name: "Apply System Access" 
   win_security_policy:
     section: 'System Access'
@@ -12,6 +8,19 @@
   when: item.value.enabled
   tags: item.value.tags
   loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
+  loop_control:
+    label: "{{ item.value.name }}"
+    index_var: my_idx
+
+- name: "Apply User Rights" 
+  win_security_policy:
+    section: 'User Right'
+    name: "{{ item.value.properties.name }}"
+    users: "{{ item.value.properties.users }}"
+    action: "{{ item.value.properties.action }}"
+  when: item.value.enabled
+  tags: item.value.tags
+  loop: "{{ r2019 | dict2items | selectattr('value.section','eq','User Right') | list }}"
   loop_control:
     label: "{{ item.value.name }}"
     index_var: my_idx
