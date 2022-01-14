@@ -1,7 +1,7 @@
 ---
 
 # Apply all security policies relating to server role
-- name: "Apply Security Policies 
+- name: "Apply Security Policies" 
   win_security_policy:
     section: 'System Access'
     key: "{{ item.value.properties.key }}"
