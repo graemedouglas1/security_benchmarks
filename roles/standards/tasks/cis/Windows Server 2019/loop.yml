@@ -13,7 +13,7 @@
     index_var: my_idx
 
 - name: "Apply User Rights" 
-  win_security_policy:
+  win_user_right:
     name: "{{ item.value.properties.name }}"
     users: "{{ item.value.properties.users }}"
     action: "{{ item.value.properties.action }}"
