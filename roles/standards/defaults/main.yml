@@ -74,7 +74,19 @@ r2019:
         - domaincontroller
         - memberserver
         - control_2.2.1
-
+  2.3.1.2:
+    name: "2.3.1.2 - L1 Ensure Accounts Block Microsoft accounts is set to Users cant add or log on with Microsoft accounts"
+    module: registry
+    enabled: true
+    properties:
+      path: HKLM:\Software\Microsoft\Windows\Currentversion\Policies\System
+      name: NoConnectedUser
+      data: 3
+      type: dword
+    tags:
+      - domaincontroller
+      - memberserver
+      - control_2.3.1.2
 
 
 cis:
