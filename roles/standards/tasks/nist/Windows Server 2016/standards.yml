@@ -1,5 +1,0 @@
----
-
-- name: NIST Standards - To be defined
-  debug:
-    msg: "Not defined."

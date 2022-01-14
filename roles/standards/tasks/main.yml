@@ -1,13 +1,59 @@
 ---
 
+# Create all facts required as part of this playbook
 - name: Include required facts
   include_tasks:
     file: 'facts.yml'
 
-- name: Include CIS distribution specific standards
-  include_tasks:
-    file: "cis/main.yml"
+# Import standards based on location & OS_version
+- name: Import standards for OS Build
+  include_vars:
+    file: vars/data/{{ os_version }}.yml
+    name: standards
 
-- name: Include NIST distribution specific standards
-  include_tasks:
-    file: "nist/main.yml"
+- debug:
+    msg: "{{ standards }}"
+
+# Apply all security policies relating to server role
+- name: "Apply Security Policies" 
+  win_security_policy:
+    section: 'System Access'
+    key: "{{ item.value.properties.key }}"
+    value: "{{ item.value.properties.value }}"
+  when:
+    - item.value.enabled
+    - server_role in item.value.role
+  tags: item.value.tags
+  loop: "{{ standards | dict2items | selectattr('value.module','eq','System Access') | list }}"
+  loop_control:
+    label: "{{ item.value.name }}"
+    index_var: my_idx
+
+# Apply all user rights relating to server role
+- name: "Apply User Rights" 
+  win_user_right:
+    name: "{{ item.value.properties.name }}"
+    users: "{{ item.value.properties.users }}"
+    action: "{{ item.value.properties.action }}"
+  when:
+    - item.value.enabled
+    - server_role in item.value.role
+  tags: item.value.tags
+  loop: "{{ standards | dict2items | selectattr('value.module','eq','User Right') | list }}"
+  loop_control:
+    label: "{{ item.value.name }}"
+
+# Apply all security registry keys relating to server role
+- name: "Apply Registry Keys"
+  win_regedit:
+    path: "{{ item.value.properties.path }}"
+    name: "{{ item.value.properties.name }}"
+    data: "{{ item.value.properties.data }}"
+    type: "{{ item.value.properties.type }}"
+  when:
+    - item.value.enabled
+    - server_role in item.value.role
+  tags: item.value.tags
+  loop: "{{ standards | dict2items | selectattr('value.module','eq','registry') | list }}"
+  loop_control:
+    label: "{{ item.value.name }}"

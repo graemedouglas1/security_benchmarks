@@ -6,17 +6,12 @@
     file: "{{ os_version }}/asserts.yml"
   run_once: yes
 
-# Apply CIS Policies
-#- name: Apply CIS Level 1 Policies
-#  include_tasks:
-#    file: "{{ os_version }}/Level1.yml"
-
-# Apply CIS Policies
-#- name: Apply CIS Level 2 Policies
-#  include_tasks:
-#    file: "{{ os_version }}/Level2.yml"
-
-# Apply CIS Policies
+ Apply CIS Policies
 - name: Apply CIS Level 1 Policies
   include_tasks:
-    file: "apply.yml"
+    file: "{{ os_version }}/Level1.yml"
+
+ Apply CIS Policies
+- name: Apply CIS Level 2 Policies
+  include_tasks:
+    file: "{{ os_version }}/Level2.yml"
