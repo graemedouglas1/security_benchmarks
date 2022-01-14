@@ -1,8 +1,10 @@
 ---
+- debug:
+    msg: |
+      {{ r2019 | dict2items }}
 
-- name: "{{ item.value }}"
+
+- name: "Manage System Access"
   win_security_policy:
     section: System Access
-    key: PasswordHistorySize
-    value: 24
-  with_dict: "{{ r2019 }}"
+  loop: "{{ r2019 | dict2items | selectattr('value.section','eq',System Access) | list }}"
