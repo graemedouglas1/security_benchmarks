@@ -1,6 +1,6 @@
 ---
 
-- task: "{{ item.1.name }}" 
+- task: "CIS Level 1" 
   name: "{{ item.1.name }}"
   win_security_policy:
     section: "{{ item.1.section }}"
