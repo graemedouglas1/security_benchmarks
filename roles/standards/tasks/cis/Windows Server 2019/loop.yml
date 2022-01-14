@@ -1,14 +1,15 @@
 ---
 
-- debug:
-    msg: |
-      {{ r2019 | dict2items }}
+- name: Construct 
+  debug:
+    msg: "Run"
 
-
-- win_security_policy:
+- name: "Apply System Access" 
+  win_security_policy:
     section: 'System Access'
     key: "{{ item.value.properties.key }}"
     value: "{{ item.value.properties.value }}"
   when: "{{ item.value.enabled }}"
   loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
-  name: "{{ item.value.name }}"
+  loop_control:
+    label: "{{ item.key }}"
