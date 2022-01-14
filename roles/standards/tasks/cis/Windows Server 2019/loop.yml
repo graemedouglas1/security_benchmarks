@@ -1,6 +1,6 @@
 ---
 
-- name: ensure all template files are rendered
+  - name: "ensure all template files are rendered"
   # Configure the template module to use dynamic values from the loop
   win_security_policy:
     section: "{{ item.1.section }}"
