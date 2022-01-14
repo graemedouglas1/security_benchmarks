@@ -8,7 +8,7 @@
     value: "{{ item.value.properties.value }}"
   when:
     - item.value.enabled
-    - "server_role == {{ item.value.properties.role }}"
+    - "server_role == {{ item.value.role }}"
   tags: item.value.tags
   loop: "{{ r2019 | dict2items | selectattr('value.module','eq','System Access') | list }}"
   loop_control:
@@ -23,7 +23,7 @@
     action: "{{ item.value.properties.action }}"
   when:
     - item.value.enabled
-    - "server_role == {{ item.value.properties.role }}"
+    - "server_role == {{ item.value.role }}"
   tags: item.value.tags
   loop: "{{ r2019 | dict2items | selectattr('value.module','eq','User Right') | list }}"
   loop_control:
@@ -39,7 +39,7 @@
     type: "{{ item.value.properties.type }}"
   when:
     - item.value.enabled
-    - "server_role == {{ item.value.properties.role }}"
+    - "server_role == {{ item.value.role }}"
   tags: item.value.tags
   loop: "{{ r2019 | dict2items | selectattr('value.module','eq','registry') | list }}"
   loop_control:
