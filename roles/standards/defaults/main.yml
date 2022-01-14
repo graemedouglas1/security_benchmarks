@@ -43,7 +43,7 @@ r2019:
   1.1.1:
     name: "1.1.1 - L1 Ensure Enforce password history is set to 24 or more passwords"
     module: System Access
-    role: ['member', 'dc']
+    role: ['standalone', 'member', 'dc']
     enabled: true
     properties:
       key: PasswordHistorySize

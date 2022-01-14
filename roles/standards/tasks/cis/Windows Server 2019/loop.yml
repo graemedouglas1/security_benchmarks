@@ -1,9 +1,5 @@
 ---
 
-- name: Print facts
-  ansible.builtin.debug:
-    msg: {{ server_role }}
-
 # Apply all security policies relating to server role
 - name: "Apply Security Policies" 
   win_security_policy:
