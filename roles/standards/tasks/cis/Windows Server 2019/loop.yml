@@ -4,12 +4,12 @@
       {{ r2019 | dict2items }}
 
 
-- name: "Apply System Access"
-    debug:
-      msg: Testing loop {{ item }}
-    loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
+- name: "Manage System Access"
+  debug:
+    msg: Testing loop {{ item }}
+  loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
 
 - name: "Apply User Rights"
-    debug:
-      msg: Testing loop {{ item }}
-    loop: "{{ r2019 | dict2items | selectattr('value.section','eq','User Right') | list }}"
+  debug:
+    msg: Testing loop {{ item }}
+  loop: "{{ r2019 | dict2items | selectattr('value.section','eq','User Right') | list }}"
