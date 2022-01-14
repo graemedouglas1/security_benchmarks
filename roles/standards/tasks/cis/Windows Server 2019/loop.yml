@@ -10,6 +10,7 @@
     key: "{{ item.value.properties.key }}"
     value: "{{ item.value.properties.value }}"
   when: item.value.enabled
+  tags: item.value.tags
   loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
   loop_control:
     label: "{{ item.value.name }}"
