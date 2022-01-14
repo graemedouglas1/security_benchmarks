@@ -1,13 +1,14 @@
 ---
-name: "{{ item.1.name }}"
-win_security_policy:
-  section: "{{ item.1.section }}"
-  key: "{{ item.1.key }}"
-  value: "{{ item.1.value }}"
-when:
-  - "{{ item.0.enabled }}"
-with_subelements:
-  - "{{ r2019 }}"
-  - properties
-#tags:
-#  - "{{ item.1.tags }}"
+
+  tasks:
+  - name: ensure all template files are rendered
+    # Configure the template module to use dynamic values from the loop
+    win_security_policy:
+      section: "{{ item.1.section }}"
+      key: "{{ item.1.key }}"
+      value: "{{ item.1.value }}"
+    # Define a 'list of hashes' for the loop module to iterate over
+    # Each item has a 'src' and a 'dest'
+    loop: "{{ r2019 }}"
+    loop_control:
+      index_var: my_idx
