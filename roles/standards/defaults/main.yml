@@ -42,7 +42,7 @@ win_skip_for_test: false
 r2019:
   1.1.1:
     name: "1.1.1 - L1 Ensure Enforce password history is set to 24 or more passwords"
-    section: System Access
+    module: System Access
     enabled: true
     properties:
       key: PasswordHistorySize
@@ -53,7 +53,7 @@ r2019:
         - control_1.1.1
   1.1.2:
     name: "1.1.2 - L1 Ensure Maximum password age is set to 60 or fewer days but not 0"
-    section: System Access
+    module: System Access
     enabled: true
     properties:
       key: MaximumPasswordAge
@@ -63,8 +63,8 @@ r2019:
         - memberserver
         - control_1.1.2
   2.2.1:
-    name: "L1 Ensure Access Credential Manager as a trusted caller is set to No One"
-    section: User Right
+    name: "2.2.1 - L1 Ensure Access Credential Manager as a trusted caller is set to No One"
+    module: User Right
     enabled: true
     properties:
       name: SeTrustedCredManAccessPrivilege
