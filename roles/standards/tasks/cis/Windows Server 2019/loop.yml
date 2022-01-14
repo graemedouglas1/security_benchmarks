@@ -3,13 +3,10 @@
     msg: |
       {{ r2019 | dict2items }}
 
-
-- name: "Manage System Access"
-  tasks:
-    - name: "{{ item.key }}"
-      debug:
-        msg: Testing loop {{ item }}
-      loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
+- name: "{{ item.key }}"
+  debug:
+    msg: Testing loop {{ item }}
+  loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
 
 - name: "Apply User Rights"
   debug:
