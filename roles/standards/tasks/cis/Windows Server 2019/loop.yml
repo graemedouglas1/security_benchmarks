@@ -5,9 +5,12 @@
       {{ r2019 | dict2items }}
 
 
-- name: "Testing loop: {{ item.key }}"
-  debug:
-    msg: Testing loop {{ item }}
+- name: "Testing loop"
+  win_security_policy:
+    section: 'System Access'
+    key: "{{ item[1]key }}"
+    value: "{{ item[1]value }}"
+  when: "{{ item[0]enabled }}"
   loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
 
 - name: "Apply User Rights"
