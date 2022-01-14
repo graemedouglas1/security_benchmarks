@@ -41,7 +41,7 @@ win_skip_for_test: false
 
 r2019:
   1.1.1:
-    name: "L1 Ensure Enforce password history is set to 24 or more passwords"
+    name: "1.1.1 - L1 Ensure Enforce password history is set to 24 or more passwords"
     section: System Access
     enabled: true
     properties:
@@ -52,7 +52,7 @@ r2019:
         - memberserver
         - control_1.1.1
   1.1.2:
-    name: "L1 Ensure Maximum password age is set to 60 or fewer days but not 0"
+    name: "1.1.2 - L1 Ensure Maximum password age is set to 60 or fewer days but not 0"
     section: System Access
     enabled: true
     properties:
