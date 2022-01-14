@@ -40,28 +40,28 @@ win_skip_for_test: false
 # in order for the variables below to take effect.
 
 r2019:
-  - reference: '1.1.1'
+  1.1.1:
+    name: "1.1.1 | POLICY | L1 Ensure Enforce password history is set to 24 or more passwords"
+    section: System Access
     enabled: true
     properties:
-      - name: "1.1.1 | POLICY | L1 Ensure Enforce password history is set to 24 or more passwords"
-        section: System Access
-        key: PasswordHistorySize
-        value: 24
-        tags:
-          - domaincontroller
-          - memberserver
-          - control_1.1.1
-  - reference: '1.1.2'
+      key: PasswordHistorySize
+      value: 24
+      tags:
+        - domaincontroller
+        - memberserver
+        - control_1.1.1
+  1.1.2:
+    name: "SCORED | 1.1.2 | POLICY | L1 Ensure Maximum password age is set to 60 or fewer days but not 0"
+    section: System Access
     enabled: true
     properties:
-      - name: "SCORED | 1.1.2 | POLICY | L1 Ensure Maximum password age is set to 60 or fewer days but not 0"
-        section: System Access
-        key: MaximumPasswordAge
-        value: 60
-        tags:
-          - domaincontroller
-          - memberserver
-          - control_1.1.2
+      key: MaximumPasswordAge
+      value: 60
+      tags:
+        - domaincontroller
+        - memberserver
+        - control_1.1.2
 
 cis:
   2016:
