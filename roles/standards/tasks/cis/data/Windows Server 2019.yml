@@ -1,6 +1,6 @@
 ---
 
-standards:
+cis:
   1.1.1:
     name: "1.1.1 - L1 Ensure Enforce password history is set to 24 or more passwords"
     module: System Access
