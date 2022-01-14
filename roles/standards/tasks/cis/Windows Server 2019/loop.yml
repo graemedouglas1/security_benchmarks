@@ -1,6 +1,7 @@
 ---
 
-- name: "{{ item.1.name }}"
+- task: "{{ item.1.name }}" 
+  name: "{{ item.1.name }}"
   win_security_policy:
     section: "{{ item.1.section }}"
     key: "{{ item.1.key }}"
