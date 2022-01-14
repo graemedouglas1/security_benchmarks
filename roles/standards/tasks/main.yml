@@ -36,13 +36,14 @@
     file: vars/data/{{ os_version }}.yml
     name: standards
 
-- debug:
-    msg: "{{ standards }}"
-
+# Applying the following config relating to a server role:
+#
+# - All Security Policies
+# - All user rights
+# - All security registry keys
 
 - name: "Applying CIS Security Standards"
   block:
-    # Apply all security policies relating to server role
     - name: "Apply Security Policies" 
       win_security_policy:
         section: 'System Access'
@@ -56,8 +57,7 @@
       loop_control:
         label: "{{ item.value.name }}"
         index_var: my_idx
-
-    # Apply all user rights relating to server role
+  
     - name: "Apply User Rights" 
       win_user_right:
         name: "{{ item.value.properties.name }}"
@@ -71,7 +71,6 @@
       loop_control:
         label: "{{ item.value.name }}"
 
-    # Apply all security registry keys relating to server role
     - name: "Apply Registry Keys"
       win_regedit:
         path: "{{ item.value.properties.path }}"
