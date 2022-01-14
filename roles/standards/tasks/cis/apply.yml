@@ -18,7 +18,7 @@
     - item.value.enabled
     - server_role in item.value.role
   tags: item.value.tags
-  loop: "{{ standards.standards | dict2items | selectattr('value.module','eq','System Access') | list }}"
+  loop: "{{ standards | dict2items | selectattr('value.module','eq','System Access') | list }}"
   loop_control:
     label: "{{ item.value.name }}"
     index_var: my_idx
