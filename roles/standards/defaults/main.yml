@@ -62,6 +62,19 @@ r2019:
         - domaincontroller
         - memberserver
         - control_1.1.2
+  2.2.1:
+    name: "SCORED | 2.2.1 | POLICY | L1 Ensure Access Credential Manager as a trusted caller is set to No One"
+    section: User Right
+    properties:
+      name: SeTrustedCredManAccessPrivilege
+      users: []
+      action: set
+      tags:
+        - domaincontroller
+        - memberserver
+        - control_2.2.1
+
+
 
 cis:
   2016:
