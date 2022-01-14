@@ -1,9 +1,12 @@
 ---
 
-- name: Include vars into the 'standards' variable
+- name: Import standards for OS Build
   include_vars:
     file: data/{{ os_version }}.yml
     name: standards
+
+- debug:
+    msg: "{{ standards }}"
 
 # Apply all security policies relating to server role
 - name: "Apply Security Policies" 
