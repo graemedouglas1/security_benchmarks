@@ -14,7 +14,6 @@
 
 - name: "Apply User Rights" 
   win_security_policy:
-    section: 'User Right'
     name: "{{ item.value.properties.name }}"
     users: "{{ item.value.properties.users }}"
     action: "{{ item.value.properties.action }}"
@@ -23,4 +22,3 @@
   loop: "{{ r2019 | dict2items | selectattr('value.section','eq','User Right') | list }}"
   loop_control:
     label: "{{ item.value.name }}"
-    index_var: my_idx
