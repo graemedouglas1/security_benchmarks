@@ -7,4 +7,4 @@
 - name: "Manage System Access"
   win_security_policy:
     section: System Access
-  loop: "{{ r2019 | dict2items | selectattr('value.section','eq',System Access) | list }}"
+  loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
