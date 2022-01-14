@@ -1,5 +1,6 @@
 ---
 
+
 # Apply all security policies relating to server role
 - name: "Apply Security Policies" 
   win_security_policy:
@@ -8,7 +9,7 @@
     value: "{{ item.value.properties.value }}"
   when:
     - item.value.enabled
-    - server_role == item.value.role
+    - item.value.role | regex_search(server_role)
   tags: item.value.tags
   loop: "{{ r2019 | dict2items | selectattr('value.module','eq','System Access') | list }}"
   loop_control:
