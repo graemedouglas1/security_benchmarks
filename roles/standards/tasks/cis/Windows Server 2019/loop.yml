@@ -1,15 +1,13 @@
 ---
-
-tasks:
-  - name: "{{ item.1.name }}"
-    win_security_policy:
-      section: "{{ item.1.section }}"
-      key: "{{ item.1.key }}"
-      value: "{{ item.1.value }}"
-    when:
-      - "{{ item.0.enabled }}"
-    with_subelements:
-      - "{{ r2019 }}"
-      - properties
-    #tags:
-    #  - "{{ item.1.tags }}"
+name: "{{ item.1.name }}"
+  win_security_policy:
+    section: "{{ item.1.section }}"
+    key: "{{ item.1.key }}"
+    value: "{{ item.1.value }}"
+  when:
+    - "{{ item.0.enabled }}"
+  with_subelements:
+    - "{{ r2019 }}"
+    - properties
+  #tags:
+  #  - "{{ item.1.tags }}"
