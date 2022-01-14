@@ -12,5 +12,5 @@
   when: "{{ item.value.enabled }}"
   loop: "{{ r2019 | dict2items | selectattr('value.section','eq','System Access') | list }}"
   loop_control:
-    label: "{{ item.name }}"
+    label: "{{ item.value.name }}"
     index_var: my_idx
