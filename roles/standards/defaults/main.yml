@@ -51,6 +51,18 @@ r2019:
           - domaincontroller
           - memberserver
           - control_1.1.1
+  - reference: '1.1.2'
+    enabled: true
+    properties:
+      - name: "SCORED | 1.1.2 | POLICY | L1 Ensure Maximum password age is set to 60 or fewer days but not 0"
+        section: System Access
+        key: MaximumPasswordAge
+        value: 60
+        tags:
+          - domaincontroller
+          - memberserver
+          - control_1.1.2
+
 cis:
   2016:
     1.1.1: true
