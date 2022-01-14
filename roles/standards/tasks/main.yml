@@ -1,5 +1,11 @@
 ---
 
+# Applying the following security configuration relating to specified server role:
+#
+# - All Security Policies
+# - All user rights
+# - All security registry keys
+
 # Gather distribution info of system
 - name: Gather distribution info
   setup:
@@ -29,19 +35,16 @@
 - name: Include required facts
   include_tasks:
     file: 'facts.yml'
+  tags: [ 'always' ]
 
 # Import standards based on location & OS_version
 - name: Import standards for OS Build
   include_vars:
     file: vars/data/{{ os_version }}.yml
     name: standards
+  tags: [ 'always' ]
 
-# Applying the following config relating to a server role:
-#
-# - All Security Policies
-# - All user rights
-# - All security registry keys
-
+# Apply Standards
 - name: "Applying CIS Security Standards"
   block:
     - name: "Apply Security Policies" 
